@@ -1,4 +1,7 @@
-# Content-Security-Policy nonce for inline scripts
-cspNonce = Rails.cspNonce = ->
-  meta = document.querySelector('meta[name=csp-nonce]')
-  meta and meta.content
+nonce = null
+
+Rails.loadCSPNonce = ->
+  nonce = document.querySelector("meta[name=csp-nonce]")?.content
+
+# Returns the Content-Security-Policy nonce for inline scripts.
+Rails.cspNonce = -> nonce
